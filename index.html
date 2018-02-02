@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+    <html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>HangmanGame</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <script src="assets/jscript/game.js"></script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <header id="header">
+                <h1>Hangman Game!</h1>
+                <ul class="Menu">
+                    <li>
+                        <a href="rules.html" target="_blank">Rules</a>
+                    </li>
+                    <li>
+                        <select>
+                            <option value="easy">easy</option>
+                            <option value="normal">normal</option>
+                            <option value="hard">hard</option>
+                        </select>
+                    </li>
+                </ul>
+            </header>
+            <main id="main">
+                <h2>Guess the word!</h2>
+                <div>..<span id="output">...</span></div>
+                <div>Tries remaining:<span id="tries">...</span></div>
+                <div>Guessed letters:<span id="guessed"> </span></div>
+            </main>
+        </div>
+    </body>
+
+    </html>
