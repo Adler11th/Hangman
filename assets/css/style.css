@@ -3,4 +3,6 @@ body{
     margin: auto;
     font-size: 2rem;
     text-align: center;
+    background: #000000;
+    color: #ffffff;
 }
