@@ -1,8 +1,73 @@
+/* General */
+html{
+    height: 100%;
+}
 body{
-    max-width: 960px;
-    margin: auto;
-    font-size: 2rem;
+    height: 100%;
+    font-size: 1rem;
     text-align: center;
     background: #000000;
-    color: #ffffff;
+    color: #dfdee0;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.wrapper{
+    position: relative;
+    z-index: 1;
+    max-width: 980px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-row-gap: 1rem;
+    align-items: center;
+    margin: auto;
+}
+/* animation areas */
+/* =============== */
+
+@keyframes animatedBackground{
+    from{ transition: -100px;}
+    to{ transition: 3600px;}
+}
+
+@-webkit-keyframes animatedBackground{
+	from { background-position: 0 0; }
+	to { background-position: 100 0; }
+}
+.animate-area{
+    position: absolute;
+    z-index: -99;
+    width: 30px;
+    height: 30px;
+    background-position: 0px 0px;
+    background-repeat: repeat-x;
+    background-size: contain;
+    background-image: url(../img/dot.png);
+    opacity: 0.4;
+    animation: animatedBackground 30s linear infinite alternate-reverse;
+    -webkit-animation: animatedBackground 30s linear infinite alternate-reverse;
+}
+
+/* main area */
+#header,
+#main{
+    background: #504e5c;
+    border-radius: 10px;
+}
+#header{
+    padding: 1rem;
+}
+#output{
+    font-size: 2rem;
+    color: #e04c4c;
+}
+h1,
+h2{
+    font-family: "Segoe Script";
+    color: #e04c4c;
+}
+h1{
+    font-size: 3rem;
+}
+h2{
+    font-size: 2rem;
 }

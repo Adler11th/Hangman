@@ -3,8 +3,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
     //--Global variables
     //===========================================================
     var TRIES = 10;
+    var WINS = 0;
     var DICTIONARY = ["hello", "messy", "pygama", "frenzy"];
-    var WORD = DICTIONARY[Math.floor(Math.random() * 4)];//WORD that needs to be guessed
+    var WORD = DICTIONARY[Math.floor(Math.random() * DICTIONARY.length)];//WORD that needs to be guessed
     var utilityArray = [];                              //side array to track users guessed letters
     var enteredKeys = "";                              //variable that registers enetered keys
     
@@ -24,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     function Output(string_one) {
         document.getElementById("output").textContent = "";
         string_one.forEach(function (element) {
-            document.getElementById("output").textContent += element + " ";
+            document.getElementById("output").textContent += element.toUpperCase() + " ";
         })
     }
 
@@ -71,16 +72,26 @@ document.addEventListener("DOMContentLoaded", function (event) {
             return false;
         }
     }
+    
+    //reset word
+    function Reset(){
+        WORD = DICTIONARY[Math.floor(Math.random() * DICTIONARY.length)];
+        utilityArray = [];
+        enteredKeys = "";
+        document.getElementById("inputKeys").textContent = "";
+        document.getElementById("tries").textContent = TRIES;
+        document.getElementById("wins").textContent = WINS;
+        Replace(WORD);
+        Output(utilityArray);
+    }
 
 
     //--main()
     // ===================================================================
-    Replace(WORD);
+    // Replace(WORD);
 
-    Output(utilityArray);
-
-    document.getElementById("tries").textContent = TRIES;
-
+    // Output(utilityArray);
+    Reset();
     document.onkeyup = function (event) {
 
         var letter = event.key;
@@ -92,16 +103,21 @@ document.addEventListener("DOMContentLoaded", function (event) {
             }
             Output(utilityArray);
             document.getElementById("tries").textContent = TRIES;
-            document.getElementById("guessed").textContent += letter + " ";
+            document.getElementById("inputKeys").textContent += letter + " ";
             //--Checking win/loose conditions
             if (CheckWin(utilityArray)) {
-
-                alert("You won!");
-
+                WINS++;
+                if(confirm("You won!, press OK to continue!")){
+                    Reset();
+                }
             } else {
 
                 if (TRIES <= 0) {
-                    alert("You lost!");
+                    if(confirm("You lost! Press OK to play again!")){
+                        WINS = 0;
+                        TRIES = 10;
+                        Reset();
+                    }
                 }
             }
         }
