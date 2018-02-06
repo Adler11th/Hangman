@@ -1,15 +1,15 @@
 /* General */
-html{
-    height: 100%;
-}
 body{
-    height: 100%;
+    /* width: 100wh;
+	height: 100vh; */
     font-size: 1rem;
     text-align: center;
-    background: #000000;
+    background: linear-gradient(-45deg, #028663, #03828b, #03569e);
+    background-size: 600% 600%;
+    -webkit-animation: AnimationName 20s ease infinite;
+    -moz-animation: AnimationName 20s ease infinite;
+    animation: AnimationName 20s ease infinite;
     color: #dfdee0;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 .wrapper{
     position: relative;
@@ -17,56 +17,41 @@ body{
     max-width: 980px;
     display: grid;
     grid-template-rows: 1fr 1fr;
-    grid-row-gap: 1rem;
     align-items: center;
     margin: auto;
 }
 /* animation areas */
 /* =============== */
 
-@keyframes animatedBackground{
-    from{ transition: -100px;}
-    to{ transition: 3600px;}
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }
-
-@-webkit-keyframes animatedBackground{
-	from { background-position: 0 0; }
-	to { background-position: 100 0; }
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }
-.animate-area{
-    position: absolute;
-    z-index: -99;
-    width: 30px;
-    height: 30px;
-    background-position: 0px 0px;
-    background-repeat: repeat-x;
-    background-size: contain;
-    background-image: url(../img/dot.png);
-    opacity: 0.4;
-    animation: animatedBackground 30s linear infinite alternate-reverse;
-    -webkit-animation: animatedBackground 30s linear infinite alternate-reverse;
+@keyframes AnimationName { 
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }
 
 /* main area */
-#header,
-#main{
-    background: #504e5c;
-    border-radius: 10px;
-}
-#header{
-    padding: 1rem;
+.logo{
+    font-family: "Segoe Script";
+    font-size: 3rem;
+    color: #ffffff;
 }
 #output{
     font-size: 2rem;
-    color: #e04c4c;
 }
-h1,
-h2{
+h2,
+#output{
     font-family: "Segoe Script";
-    color: #e04c4c;
-}
-h1{
-    font-size: 3rem;
+    color: #ffffff;
 }
 h2{
     font-size: 2rem;

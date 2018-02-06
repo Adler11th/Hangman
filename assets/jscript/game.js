@@ -1,14 +1,17 @@
 document.addEventListener("DOMContentLoaded", function (event) {
-    
+
     //--Global variables
     //===========================================================
+
     var TRIES = 10;
     var WINS = 0;
-    var DICTIONARY = ["hello", "messy", "pygama", "frenzy"];
+    var DICTIONARY = ["javascript", "makes", "me", "mad"];
     var WORD = DICTIONARY[Math.floor(Math.random() * DICTIONARY.length)];//WORD that needs to be guessed
     var utilityArray = [];                              //side array to track users guessed letters
     var enteredKeys = "";                              //variable that registers enetered keys
-    
+    var HitSound = new Audio(src = "assets/sound/hit.mp3");
+    var MissSound = new Audio(src = "assets/sound/miss.mp3");
+    var WonSound = new Audio(src = "assets/sound/surpraise.mp3");
 
     //--Functions
     //=============================================================
@@ -31,10 +34,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     //--Check if input doesn't contain already entered leters, special symbols, capital letters and other
 
-    function CheckInput(key){
-        if((enteredKeys.indexOf(key) == -1)&&(/^[a-z]+$/.test(key))){
+    function CheckInput(key) {
+        if ((enteredKeys.indexOf(key) == -1) && (/^[a-z]+$/.test(key))) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -58,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     //--function that checks win condition
 
-    function CheckWin(string_a) {
+    function IsWon(string_a) {
         var number = 0;
         string_a.forEach(function (element) {
             if (element != "_") {
@@ -72,10 +75,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
             return false;
         }
     }
-    
+
     //reset word
-    function Reset(){
+    function Reset() {
         WORD = DICTIONARY[Math.floor(Math.random() * DICTIONARY.length)];
+        console.log(WORD);
         utilityArray = [];
         enteredKeys = "";
         document.getElementById("inputKeys").textContent = "";
@@ -88,9 +92,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     //--main()
     // ===================================================================
-    // Replace(WORD);
-
-    // Output(utilityArray);
     Reset();
     document.onkeyup = function (event) {
 
@@ -100,20 +101,23 @@ document.addEventListener("DOMContentLoaded", function (event) {
             enteredKeys += letter;
             if (!InWord(WORD, letter, utilityArray)) {
                 TRIES--;
+                document.getElementById("inputKeys").textContent += letter + " ";
+                document.getElementById("tries").textContent = TRIES;
+                MissSound.play();
+            } else {
+                HitSound.play();
+                Output(utilityArray);
             }
-            Output(utilityArray);
-            document.getElementById("tries").textContent = TRIES;
-            document.getElementById("inputKeys").textContent += letter + " ";
+
             //--Checking win/loose conditions
-            if (CheckWin(utilityArray)) {
+            if (IsWon(utilityArray)) {
                 WINS++;
-                if(confirm("You won!, press OK to continue!")){
-                    Reset();
-                }
+                WonSound.play();
+                Reset();
             } else {
 
                 if (TRIES <= 0) {
-                    if(confirm("You lost! Press OK to play again!")){
+                    if (confirm("You lost! Press OK to play again!")) {
                         WINS = 0;
                         TRIES = 10;
                         Reset();
