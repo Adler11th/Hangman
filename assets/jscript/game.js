@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     var enteredKeys = "";                              //variable that registers enetered keys
     var HitSound = new Audio(src = "assets/sound/hit.mp3");
     var MissSound = new Audio(src = "assets/sound/miss.mp3");
-    var WonSound = new Audio(src = "assets/sound/surpraise.mp3");
+    var WonSound = new Audio(src = "assets/sound/Surpraise.mp3");
 
     //--Functions
     //=============================================================
